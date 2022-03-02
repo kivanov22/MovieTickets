@@ -14,6 +14,6 @@ namespace MovieTickets.Data.Models
         public string FullName { get; set; }
 
         [Required]
-        public string Bio { get; set; }
+        public string Biography { get; set; }
     }
 }

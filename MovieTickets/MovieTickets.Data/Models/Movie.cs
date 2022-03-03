@@ -1,8 +1,10 @@
 ﻿using MovieTickets.Data.Models.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MovieTickets.Data.Models
 {
+    using static Data.DataConstants;
     public class Movie
     {
         [Key]
@@ -18,13 +20,11 @@ namespace MovieTickets.Data.Models
 
         public DateTime EndDate { get; set; }
 
-        //public string TrailerPath { get; set; }
-
-        //public string ImgdbLink { get; set; }
-
-        [Required]
+        [Required(ErrorMessage =DescriptionError)]
+        
         public string Description { get; set; }
 
+        public StatusMovie StatusMovie { get; set; }
 
         [Required]
         public string Language { get; set; }
@@ -37,10 +37,17 @@ namespace MovieTickets.Data.Models
 
         public decimal Price { get; set; }
 
+        public int CinemaId { get; set; }
+
+        [ForeignKey("CinemaId")]
+        public Cinema Cinema { get; set; }
+
         public int ProducerId { get; set; }
+
+        [ForeignKey("ProducerId")]
         public virtual Producer Producer { get; set; }
 
-        public virtual ICollection<Actor> Actors { get; set; } = new List<Actor>();
+        public virtual ICollection<MovieActor> MovieActors { get; set; } = new List<MovieActor>();
 
     }
 }

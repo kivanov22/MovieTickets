@@ -1,5 +1,6 @@
 ﻿using MovieTickets.Data.Models.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MovieTickets.Data.Models
 {
@@ -8,22 +9,16 @@ namespace MovieTickets.Data.Models
         [Key]
         public int TicketId { get; set; }
 
-        [Required]
-        public string MovieName { get; set; }
-
-        public Resolution Resolution { get; set; }
-
-        public decimal Price { get; set; }
-
+     
         public TicketType TicketType { get; set; }
 
-        public int Quantity { get; set; }
+        public int MovieId { get; set; }
+        [ForeignKey("MovieId")]
+        public Movie Movie { get; set; }
 
-        public int Row { get; set; }
+        public int CinemaId { get; set; }
+        [ForeignKey("CinemaId")]
 
-        [Required]
-        public int Seat { get; set; }
-
-        public int Hall { get; set; }
+        public Cinema Cinema { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MovieTickets.Data.Models
 {
+    using static Data.DataConstants;
     public class Cinema
     {
         [Key]
@@ -12,20 +13,18 @@ namespace MovieTickets.Data.Models
         public string Logo { get; set; }
 
         [Required]
+        [MaxLength(CinemaNameMaxLenght)]
         public string CinemaName { get; set; }
 
         [Required]
+        [MaxLength(CityNameMaxLenght)]
         public string City { get; set; }
 
         [Required]
+        [MaxLength(CinemaAddressMaxLenght)]
         public string CinemaAddress { get; set; }
        
-        public DateTime Schedule { get; set; }//Movies ?
-
-        public StatusMovie StatusMovie { get; set; }//Movies ?
-
         public virtual ICollection<Movie> Movies { get; set; } = new List<Movie>();
 
-        public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
     }
 }

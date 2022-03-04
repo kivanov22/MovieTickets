@@ -11,9 +11,7 @@
         public const int BiographyMinLength = 10;
         public const int BiographyMaxLength = 255;
 
-        public const string ActorPictureError = "Profile picture is required";
-        public const string ActorFullNameError = "Full Name is required";
-        public const string ActorBiographyError = "Biography is required";
+        
 
         //Movie
         public const int MovieNameMinLength = 10;
@@ -38,8 +36,7 @@
         public const int CinemaSeatMinLength = 1;
         public const int CinemaSeatMaxLength = 50;
 
-        public const string NameError = "Name is required";
-        public const string DescriptionError = "Description is required";
+      
         
 
 
@@ -48,5 +45,19 @@
         public const int TicketQuantityMaxLength = 10;
         public const int TicketPriceMinLength = 15;
         public const int TicketPriceMaxLength = 50;
+
+        //Display attributes
+        public const string DisplayProfilePicture = "Profile Picture";
+        public const string DisplayFullName = "Full Name";
+        public const string DisplayBiography = "Biography";
+        public const string DisplayAge = "Age";
+
+
+        //Display errors
+        public const string ProfilePictureError = "Profile picture is required";
+        public const string FullNameError = "Full Name is required";
+        public const string BiographyError = "Biography is required";
+        public const string NameError = "Name is required";
+        public const string DescriptionError = "Description is required";
     }
 }

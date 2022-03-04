@@ -2,7 +2,7 @@
 
 namespace MovieTickets.Data.Models
 {
-    using static Data.DataConstants;
+    using static DataConstants;
     public class Actor
     {
         [Key]

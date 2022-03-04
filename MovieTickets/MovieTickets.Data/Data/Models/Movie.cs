@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MovieTickets.Data.Models
 {
-    using static Data.DataConstants;
+    using static DataConstants;
     public class Movie
     {
         [Key]
@@ -35,7 +35,7 @@ namespace MovieTickets.Data.Models
 
         public Resolution Resolution { get; set; }
 
-        public decimal Price { get; set; }
+        public double Price { get; set; }
 
         public int CinemaId { get; set; }
 

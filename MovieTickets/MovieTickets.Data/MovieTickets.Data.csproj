@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Common\" />
+    <Folder Include="Data\Models\Common\" />
   </ItemGroup>
 
 </Project>

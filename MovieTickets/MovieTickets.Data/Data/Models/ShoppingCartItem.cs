@@ -7,7 +7,7 @@ namespace MovieTickets.Data.Models
         [Key]
         public int Id { get; set; }
 
-        public Movie Movie { get; set; }
+        public virtual Movie Movie { get; set; }
 
         public int Quantity { get; set; }
 

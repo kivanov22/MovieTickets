@@ -1,13 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MovieTickets.Data.Data.Common;
+using System.ComponentModel.DataAnnotations;
 
 namespace MovieTickets.Data.Models
 {
     using static DataConstants;
-    public class Producer
+    public class Producer: IEntityBase
     {
         [Key]
 
-        public int ProducerId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public string ProfilePicture { get; set; }

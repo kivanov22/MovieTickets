@@ -1,12 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MovieTickets.Data.Data.Common;
+using System.ComponentModel.DataAnnotations;
 
 namespace MovieTickets.Data.Models
 {
     using static DataConstants;
-    public class Actor
+    public class Actor: IEntityBase
     {
         [Key]
-        public int ActorId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public string ProfilePicture { get; set; }
@@ -21,6 +22,6 @@ namespace MovieTickets.Data.Models
         [MaxLength(BiographyMaxLength)]
         public string Biography { get; set; }
 
-        public ICollection<MovieActor> MovieActors { get; set; } = new List<MovieActor>();
+        public virtual ICollection<MovieActor> MovieActors { get; set; } = new List<MovieActor>();
     }
 }

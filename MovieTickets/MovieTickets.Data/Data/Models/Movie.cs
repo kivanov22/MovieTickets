@@ -1,14 +1,15 @@
-﻿using MovieTickets.Data.Models.Enums;
+﻿using MovieTickets.Data.Data.Common;
+using MovieTickets.Data.Models.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MovieTickets.Data.Models
 {
     using static DataConstants;
-    public class Movie
+    public class Movie: IEntityBase
     {
         [Key]
-        public int MovieId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public string Title { get; set; }
@@ -40,7 +41,7 @@ namespace MovieTickets.Data.Models
         public int CinemaId { get; set; }
 
         [ForeignKey("CinemaId")]
-        public Cinema Cinema { get; set; }
+        public virtual Cinema Cinema { get; set; }
 
         public int ProducerId { get; set; }
 

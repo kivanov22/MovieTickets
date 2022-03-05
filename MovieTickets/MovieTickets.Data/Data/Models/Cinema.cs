@@ -1,13 +1,13 @@
-﻿using MovieTickets.Data.Models.Enums;
+﻿using MovieTickets.Data.Data.Common;
 using System.ComponentModel.DataAnnotations;
 
 namespace MovieTickets.Data.Models
 {
     using static DataConstants;
-    public class Cinema
+    public class Cinema: IEntityBase
     {
         [Key]
-        public int CinemaId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public string Logo { get; set; }

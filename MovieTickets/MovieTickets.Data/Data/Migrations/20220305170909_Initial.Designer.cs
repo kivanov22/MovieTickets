@@ -12,7 +12,7 @@ using MovieTickets.Data;
 namespace MovieTickets.Data.Data.Migrations
 {
     [DbContext(typeof(MovieTicketsDbContext))]
-    [Migration("20220304115313_Initial")]
+    [Migration("20220305170909_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -163,11 +163,11 @@ namespace MovieTickets.Data.Data.Migrations
 
             modelBuilder.Entity("MovieTickets.Data.Models.Actor", b =>
                 {
-                    b.Property<int>("ActorId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ActorId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("Age")
                         .HasColumnType("int");
@@ -186,7 +186,7 @@ namespace MovieTickets.Data.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ActorId");
+                    b.HasKey("Id");
 
                     b.ToTable("Actors");
                 });
@@ -262,11 +262,11 @@ namespace MovieTickets.Data.Data.Migrations
 
             modelBuilder.Entity("MovieTickets.Data.Models.Cinema", b =>
                 {
-                    b.Property<int>("CinemaId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CinemaId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("CinemaAddress")
                         .IsRequired()
@@ -287,18 +287,18 @@ namespace MovieTickets.Data.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CinemaId");
+                    b.HasKey("Id");
 
                     b.ToTable("Cinemas");
                 });
 
             modelBuilder.Entity("MovieTickets.Data.Models.Movie", b =>
                 {
-                    b.Property<int>("MovieId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MovieId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("CinemaId")
                         .HasColumnType("int");
@@ -343,7 +343,7 @@ namespace MovieTickets.Data.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("MovieId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CinemaId");
 
@@ -418,11 +418,11 @@ namespace MovieTickets.Data.Data.Migrations
 
             modelBuilder.Entity("MovieTickets.Data.Models.Producer", b =>
                 {
-                    b.Property<int>("ProducerId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProducerId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("Age")
                         .HasColumnType("int");
@@ -441,7 +441,7 @@ namespace MovieTickets.Data.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ProducerId");
+                    b.HasKey("Id");
 
                     b.ToTable("Producers");
                 });

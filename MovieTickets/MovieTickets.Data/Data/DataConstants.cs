@@ -3,7 +3,6 @@
     public class DataConstants
     {
         //Actors and Producers
-
         public const int FullNameMinLength = 3;
         public const int FullNameMaxLength = 50;
         public const int AgeMaxLength = 80;
@@ -11,7 +10,6 @@
         public const int BiographyMinLength = 10;
         public const int BiographyMaxLength = 255;
 
-        
 
         //Movie
         public const int MovieNameMinLength = 10;
@@ -36,10 +34,6 @@
         public const int CinemaSeatMinLength = 1;
         public const int CinemaSeatMaxLength = 50;
 
-      
-        
-
-
         //Tickets
         public const int TicketQuantityMinLength = 1;
         public const int TicketQuantityMaxLength = 10;
@@ -51,7 +45,12 @@
         public const string DisplayFullName = "Full Name";
         public const string DisplayBiography = "Biography";
         public const string DisplayAge = "Age";
-
+        public const string DisplayEmail = "Email address";
+        public const string DisplayConfirmPassword = "Confirm password";
+        public const string DisplayCinemaLogo = "Cinema Logo";
+        public const string DisplayCinemaName = "Cinema Name";
+        public const string DisplayCinemaAddress = "Cinema Address";
+        public const string DisplayCity = "City";
 
         //Display errors
         public const string ProfilePictureError = "Profile picture is required";
@@ -59,5 +58,11 @@
         public const string BiographyError = "Biography is required";
         public const string NameError = "Name is required";
         public const string DescriptionError = "Description is required";
+        public const string EmailError = "Email address is required";
+        public const string ConfirmPasswordError = "Confirm password is required";
+        public const string CinemaLogoError = "Cinema logo is required";
+        public const string CinemaNameError = "Cinema name is required";
+        public const string CinemaAddressError = "Cinema address is required";
+        public const string CinemaCityError = "City is required";
     }
 }

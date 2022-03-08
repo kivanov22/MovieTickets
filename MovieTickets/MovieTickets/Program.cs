@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MovieTickets.Data;
 using MovieTickets.Data.Models;
+using MovieTickets.Services.Contracts;
+using MovieTickets.Services.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,15 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<MovieTicketsDbContext>();
+builder.Services.AddMemoryCache();
+builder.Services.AddSession();
+
+builder.Services.AddScoped<IActorService, ActorService>();
+builder.Services.AddScoped<IProducerService, ProducerService>();
+//builder.Services.AddScoped<IMovieService, MovieService>();
+//builder.Services.AddScoped<ICinemaService, CinemaService>();
+//builder.Services.AddScoped<IOrderService, OrderService>();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -34,6 +45,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthentication();
 app.UseAuthorization();

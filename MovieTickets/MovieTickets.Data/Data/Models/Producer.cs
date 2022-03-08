@@ -7,7 +7,6 @@ namespace MovieTickets.Data.Models
     public class Producer: IEntityBase
     {
         [Key]
-
         public int Id { get; set; }
 
         [Required]

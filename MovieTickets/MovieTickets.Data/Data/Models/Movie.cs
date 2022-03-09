@@ -25,8 +25,6 @@ namespace MovieTickets.Data.Models
         
         public string Description { get; set; }
 
-        public StatusMovie StatusMovie { get; set; }
-
         [Required]
         public string Language { get; set; }
 
@@ -48,7 +46,7 @@ namespace MovieTickets.Data.Models
         [ForeignKey("ProducerId")]
         public virtual Producer Producer { get; set; }
 
-        public virtual ICollection<MovieActor> MovieActors { get; set; } = new List<MovieActor>();
+        public virtual IEnumerable<MovieActor> MovieActors { get; set; } = new List<MovieActor>();
 
     }
 }

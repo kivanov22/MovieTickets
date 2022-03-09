@@ -70,7 +70,7 @@ namespace MovieTickets.Web.Controllers
         public IActionResult Register() => View(new RegisterViewModel());
 
         [HttpPost]
-        public async Task<IActionResult> Create(RegisterViewModel registerVM)
+        public async Task<IActionResult> Register(RegisterViewModel registerVM)
         {
             if (!ModelState.IsValid)
             {

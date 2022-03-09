@@ -1,6 +1,9 @@
-﻿namespace MovieTickets.Services.Contracts
+﻿using MovieTickets.Data.Data.Common;
+using MovieTickets.Data.Models;
+
+namespace MovieTickets.Services.Contracts
 {
-    public class ICinemaService
+    public interface ICinemaService:IEntityBaseRepository<Cinema>
     {
     }
 }

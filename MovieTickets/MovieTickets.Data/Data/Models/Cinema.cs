@@ -21,7 +21,7 @@ namespace MovieTickets.Data.Models
         public string City { get; set; }
 
         [Required]
-        [MaxLength(CinemaAddressMaxLenght)]
+        //[MaxLength(CinemaAddressMaxLenght)]
         public string CinemaAddress { get; set; }
        
         public virtual ICollection<Movie> Movies { get; set; } = new List<Movie>();

@@ -48,6 +48,6 @@ namespace MovieTickets.Web.ViewModels.Movies
         [ForeignKey("ProducerId")]
         public virtual Producer Producer { get; set; }
 
-        public virtual ICollection<MovieActor> MovieActors { get; set; }
+        public virtual IEnumerable<MovieActor> MovieActors { get; set; }
     }
 }

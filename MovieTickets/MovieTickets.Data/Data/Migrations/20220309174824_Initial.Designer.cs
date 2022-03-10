@@ -12,7 +12,7 @@ using MovieTickets.Data;
 namespace MovieTickets.Data.Data.Migrations
 {
     [DbContext(typeof(MovieTicketsDbContext))]
-    [Migration("20220305170909_Initial")]
+    [Migration("20220309174824_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -270,8 +270,7 @@ namespace MovieTickets.Data.Data.Migrations
 
                     b.Property<string>("CinemaAddress")
                         .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CinemaName")
                         .IsRequired()
@@ -335,9 +334,6 @@ namespace MovieTickets.Data.Data.Migrations
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("StatusMovie")
-                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -403,6 +399,9 @@ namespace MovieTickets.Data.Data.Migrations
 
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");

@@ -268,8 +268,7 @@ namespace MovieTickets.Data.Data.Migrations
 
                     b.Property<string>("CinemaAddress")
                         .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CinemaName")
                         .IsRequired()
@@ -333,9 +332,6 @@ namespace MovieTickets.Data.Data.Migrations
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("StatusMovie")
-                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -401,6 +397,9 @@ namespace MovieTickets.Data.Data.Migrations
 
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");

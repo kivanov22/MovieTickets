@@ -74,7 +74,7 @@ namespace MovieTickets.Data.Data.Migrations
                     Logo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CinemaName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     City = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    CinemaAddress = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false)
+                    CinemaAddress = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -234,7 +234,6 @@ namespace MovieTickets.Data.Data.Migrations
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StatusMovie = table.Column<int>(type: "int", nullable: false),
                     Language = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Duration = table.Column<int>(type: "int", nullable: false),
                     Genre = table.Column<int>(type: "int", nullable: false),
@@ -291,6 +290,7 @@ namespace MovieTickets.Data.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Quantity = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
                     MovieId = table.Column<int>(type: "int", nullable: false),
                     OrderId = table.Column<int>(type: "int", nullable: false)
                 },

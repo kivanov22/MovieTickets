@@ -1,6 +1,8 @@
-﻿namespace MovieTickets.Services.Services
+﻿using MovieTickets.Services.Contracts;
+
+namespace MovieTickets.Services.Services
 {
-    public class OrderService
+    public class OrderService:IOrderService
     {
     }
 }

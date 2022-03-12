@@ -40,7 +40,7 @@ namespace MovieTickets.Web.Controllers
 
             }
 
-            return View(allMovies);
+            return View("Index", allMovies);
         }
 
 

@@ -19,8 +19,16 @@ namespace MovieTickets.Services.Cart
 
         public List<ShoppingCartItem> GetShoppingCartItems()
         {
-            return ShoppingCartItems ?? (ShoppingCartItems = _context.ShoppingCartItems.Where(n => n.ShoppingCartId == ShoppingCartId)
-                .Include(n => n.Movie).ToList());
+            return ShoppingCartItems ?? (ShoppingCartItems = _context.ShoppingCartItems.Where(s => s.ShoppingCartId == ShoppingCartId)
+                .Include(m => m.Movie).ToList());
+        }
+
+        public double GetShoppingCartTotal()
+        {
+            var total = _context.ShoppingCartItems.Where(s => s.ShoppingCartId == ShoppingCartId)
+                .Select(s => s.Movie.Price * s.Quantity).Sum();
+
+            return total;
         }
     }
 }

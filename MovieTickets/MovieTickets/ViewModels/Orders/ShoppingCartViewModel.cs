@@ -1,4 +1,6 @@
-﻿namespace MovieTickets.Web.ViewModels.Orders
+﻿using MovieTickets.Services.Cart;
+
+namespace MovieTickets.Web.ViewModels.Orders
 {
     public class ShoppingCartViewModel
     {

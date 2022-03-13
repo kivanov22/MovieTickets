@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MovieTickets.Services.Cart;
 using MovieTickets.Services.Contracts;
 using MovieTickets.Web.ViewModels.Orders;
 
@@ -17,7 +16,7 @@ namespace MovieTickets.Web.Controllers
             _shoppingCart = shoppingCart;
         }
 
-        public IActionResult Index()
+        public IActionResult ShoppingCart()
         {
             var items = _shoppingCart.GetShoppingCartItems();
 

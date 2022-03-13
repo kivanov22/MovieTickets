@@ -5,6 +5,7 @@ using MovieTickets.Data.Data.Seeding;
 using MovieTickets.Data.Models;
 using MovieTickets.Services.Contracts;
 using MovieTickets.Services.Services;
+using MovieTickets.Web.ViewModels.Orders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,14 +19,18 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 options.SignIn.RequireConfirmedAccount = false)//true
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<MovieTicketsDbContext>();
-builder.Services.AddMemoryCache();
-builder.Services.AddSession();
 
 builder.Services.AddScoped<IActorService, ActorService>();
 builder.Services.AddScoped<IProducerService, ProducerService>();
 builder.Services.AddScoped<IMovieService, MovieService>();
 builder.Services.AddScoped<ICinemaService, CinemaService>();
-//builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+
+builder.Services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
+builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
+
+builder.Services.AddMemoryCache();
+builder.Services.AddSession();
 
 builder.Services.AddControllersWithViews();
 

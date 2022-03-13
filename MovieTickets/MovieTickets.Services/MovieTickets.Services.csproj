@@ -10,4 +10,8 @@
     <ProjectReference Include="..\MovieTickets.Data\MovieTickets.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Cart\" />
+  </ItemGroup>
+
 </Project>

@@ -12,8 +12,8 @@ using MovieTickets.Data;
 namespace MovieTickets.Data.Data.Migrations
 {
     [DbContext(typeof(MovieTicketsDbContext))]
-    [Migration("20220309174824_Initial")]
-    partial class Initial
+    [Migration("20220313141054_Stable")]
+    partial class Stable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

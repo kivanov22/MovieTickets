@@ -8,12 +8,15 @@ namespace MovieTickets.Web.Controllers
     {
         private readonly IMovieService _moviesService;
         private readonly ShoppingCart _shoppingCart;
+        private readonly IOrderService _orderService;
 
         public OrdersController(IMovieService moviesService,
-            ShoppingCart shoppingCart)
+            ShoppingCart shoppingCart,
+            IOrderService orderService)
         {
             _moviesService = moviesService;
             _shoppingCart = shoppingCart;
+            _orderService = orderService;
         }
 
         public IActionResult ShoppingCart()
@@ -51,6 +54,18 @@ namespace MovieTickets.Web.Controllers
                 _shoppingCart.RemoveItemFromCart(item);
             }
             return RedirectToAction(nameof(ShoppingCart));
+        }
+
+        public async Task<IActionResult> CompleteOrder()
+        {
+            var items = _shoppingCart.GetShoppingCartItems();
+            var userId = "";
+            var userEmailAddress = "";
+
+            await _orderService.StoreOrderAsync(items, userId, userEmailAddress);
+            await _shoppingCart.ClearShoppingCartAsync();
+
+            return View("OrderCompleted");
         }
     }
 }

@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MovieTickets.Services.Contracts;
 using MovieTickets.Web.ViewModels.Orders;
+using System.Security.Claims;
 
 namespace MovieTickets.Web.Controllers
 {
+    [Authorize]
     public class OrdersController:Controller
     {
         private readonly IMovieService _moviesService;
@@ -18,6 +21,17 @@ namespace MovieTickets.Web.Controllers
             _shoppingCart = shoppingCart;
             _orderService = orderService;
         }
+
+        public async Task<IActionResult> Index()
+        {
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string userRole = User.FindFirstValue(ClaimTypes.Role);
+
+            var orders = await _orderService.GetOrdersByUserIdAndRoleAsync(userId,userRole);
+
+            return View(orders);
+        }
+
 
         public IActionResult ShoppingCart()
         {
@@ -59,8 +73,8 @@ namespace MovieTickets.Web.Controllers
         public async Task<IActionResult> CompleteOrder()
         {
             var items = _shoppingCart.GetShoppingCartItems();
-            var userId = "";
-            var userEmailAddress = "";
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userEmailAddress = User.FindFirstValue(ClaimTypes.Email);
 
             await _orderService.StoreOrderAsync(items, userId, userEmailAddress);
             await _shoppingCart.ClearShoppingCartAsync();

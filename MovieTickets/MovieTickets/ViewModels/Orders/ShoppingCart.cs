@@ -85,5 +85,14 @@ namespace MovieTickets.Web.ViewModels.Orders
 
             return total;
         }
+
+        public async Task ClearShoppingCartAsync()
+        {
+            var items = await _context.ShoppingCartItems.Where(s => s.ShoppingCartId == ShoppingCartId)
+                .ToListAsync();
+            _context.ShoppingCartItems.RemoveRange(items);
+
+            await _context.SaveChangesAsync();
+        }
     }
 }

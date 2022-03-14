@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using MovieTickets.Data.Data.Static;
 using MovieTickets.Data.Models;
 using MovieTickets.Services.Contracts;
 
 namespace MovieTickets.Web.Controllers
 {
+    [Authorize(Roles = UserRoles.Admin)]
     public class CinemasController:Controller
     {
         private readonly ICinemaService _service;
@@ -13,6 +16,7 @@ namespace MovieTickets.Web.Controllers
             _service = service;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var allCinemas = await _service.GetAllAsync();
@@ -35,6 +39,8 @@ namespace MovieTickets.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             var cinemaDetails = await _service.GetByIdAsync(id);

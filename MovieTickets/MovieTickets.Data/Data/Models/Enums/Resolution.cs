@@ -9,7 +9,7 @@ namespace MovieTickets.Data.Models.Enums
         TwoD = 1,
         [Display(Name = "3D")]
         ThreeD = 2,
-        [Display(Name = "4KX")]
-        FourKX = 3,
+        [Display(Name = "4DX")]
+        FourDX = 3,
     }
 }

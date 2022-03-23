@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProducerViewModel>
+﻿@model AllProducerViewModel
 
 @{
     ViewBag.Title = "List of Producers";
@@ -21,7 +21,7 @@
                     </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+                @foreach (var item in Model.Producers)
                 {
                 <tr>
                     <td class="align-middle">

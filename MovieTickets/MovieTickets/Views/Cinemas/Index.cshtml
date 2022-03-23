@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CinemaViewModel>
+﻿@model AllCinemasViewModel
 
 @{
    ViewBag.Title = "List of Cinemas";
@@ -10,10 +10,16 @@
         <table class="table">
             <thead>
                 <tr class="text-center">
-                    <th>@Html.DisplayNameFor(model => model.Logo)</th>
-                    <th>@Html.DisplayNameFor(model => model.CinemaName)</th>
-                    <th>@Html.DisplayNameFor(model => model.City)</th>
-                    <th>@Html.DisplayNameFor(model => model.CinemaAddress)</th>
+                    <th>Logo</th>
+                    <th>Cinema Name</th>
+                    <th>City</th>
+                    <th>Cinema Address</th>
+                    
+                    @*<th>@Html.DisplayNameFor(model => item.Logo)</th>
+                    <th>@Html.DisplayNameFor(model => item.CinemaName)</th>
+                    <th>@Html.DisplayNameFor(model => item.City)</th>
+                    <th>@Html.DisplayNameFor(model => item.CinemaAddress)</th>*@
+                    
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                     {
                         <th>Actions</th>
@@ -21,7 +27,7 @@
                     </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+                @foreach (var item in Model.Cinemas)
                 {
                 <tr>
                     <td class="align-middle">

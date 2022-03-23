@@ -12,8 +12,8 @@ using MovieTickets.Data;
 namespace MovieTickets.Data.Data.Migrations
 {
     [DbContext(typeof(MovieTicketsDbContext))]
-    [Migration("20220315160625_WorkingVersion")]
-    partial class WorkingVersion
+    [Migration("20220319165052_AllWorking")]
+    partial class AllWorking
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -530,7 +530,7 @@ namespace MovieTickets.Data.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("MovieTickets.Data.Models.Producer", "Producer")
-                        .WithMany()
+                        .WithMany("Movies")
                         .HasForeignKey("ProducerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -618,6 +618,11 @@ namespace MovieTickets.Data.Data.Migrations
             modelBuilder.Entity("MovieTickets.Data.Models.Order", b =>
                 {
                     b.Navigation("OrderItems");
+                });
+
+            modelBuilder.Entity("MovieTickets.Data.Models.Producer", b =>
+                {
+                    b.Navigation("Movies");
                 });
 #pragma warning restore 612, 618
         }

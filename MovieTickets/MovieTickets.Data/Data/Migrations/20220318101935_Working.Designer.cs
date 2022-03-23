@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieTickets.Data;
 
@@ -11,9 +12,10 @@ using MovieTickets.Data;
 namespace MovieTickets.Data.Data.Migrations
 {
     [DbContext(typeof(MovieTicketsDbContext))]
-    partial class MovieTicketsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220318101935_Working")]
+    partial class Working
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -528,7 +530,7 @@ namespace MovieTickets.Data.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("MovieTickets.Data.Models.Producer", "Producer")
-                        .WithMany("Movies")
+                        .WithMany()
                         .HasForeignKey("ProducerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -616,11 +618,6 @@ namespace MovieTickets.Data.Data.Migrations
             modelBuilder.Entity("MovieTickets.Data.Models.Order", b =>
                 {
                     b.Navigation("OrderItems");
-                });
-
-            modelBuilder.Entity("MovieTickets.Data.Models.Producer", b =>
-                {
-                    b.Navigation("Movies");
                 });
 #pragma warning restore 612, 618
         }

@@ -4,7 +4,7 @@
 
 namespace MovieTickets.Data.Data.Migrations
 {
-    public partial class WorkingVersion : Migration
+    public partial class AddedICollectionProducers : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

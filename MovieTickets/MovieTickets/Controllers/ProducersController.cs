@@ -137,7 +137,17 @@ namespace MovieTickets.Web.Controllers
             {
                 return View("NotFound");
             }
-            return View(producerDetails);
+
+            var producerModel = new ProducerViewModel
+            {
+                Id = producerDetails.Id,
+                ProfilePicture = producerDetails.ProfilePicture,
+                FullName = producerDetails.FullName,
+                Age = producerDetails.Age,
+                Biography = producerDetails.Biography,
+            };
+
+            return View(producerModel);
         }
 
         [HttpPost,ActionName("Delete")]
@@ -150,7 +160,16 @@ namespace MovieTickets.Web.Controllers
                 return View("NotFound");
             }
 
-            await _service.DeleteAsync(id);
+            var producerModel = new ProducerViewModel
+            {
+                Id = producerDetails.Id,
+                ProfilePicture = producerDetails.ProfilePicture,
+                FullName = producerDetails.FullName,
+                Age = producerDetails.Age,
+                Biography = producerDetails.Biography,
+            };
+
+            await _service.DeleteAsync(producerModel.Id);
 
             return RedirectToAction(nameof(Index));
         }

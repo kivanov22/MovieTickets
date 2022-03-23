@@ -146,7 +146,17 @@ namespace MovieTickets.Web.Controllers
         {
             var actorDetails = await _service.GetByIdAsync(id);
             if (actorDetails == null) return View("NotFound");
-            return View(actorDetails);
+
+            var actorView = new ActorViewModel
+            {
+                ActorId = actorDetails.Id,
+                ProfilePicture = actorDetails.ProfilePicture,
+                FullName = actorDetails.FullName,
+                Age = actorDetails.Age,
+                Biography = actorDetails.Biography
+            };
+
+            return View(actorView);
         }
 
         [HttpPost, ActionName("Delete")]
@@ -155,7 +165,16 @@ namespace MovieTickets.Web.Controllers
             var actorDetails = await _service.GetByIdAsync(id);
             if (actorDetails == null) return View("NotFound");
 
-            await _service.DeleteAsync(id);
+            var actorView = new ActorViewModel
+            {
+                ActorId = actorDetails.Id,
+                ProfilePicture = actorDetails.ProfilePicture,
+                FullName = actorDetails.FullName,
+                Age = actorDetails.Age,
+                Biography = actorDetails.Biography
+            };
+
+            await _service.DeleteAsync(actorView.ActorId);
             return RedirectToAction(nameof(Index));
         }
     }

@@ -22,6 +22,6 @@ namespace MovieTickets.Data.Models
         [MaxLength(BiographyMaxLength)]
         public string Biography { get; set; }
 
-
+        public virtual ICollection<Movie> Movies { get; set; } = new List<Movie>();
     }
 }

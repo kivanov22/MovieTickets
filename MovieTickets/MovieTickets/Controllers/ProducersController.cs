@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MovieTickets.Data.Data.Static;
-using MovieTickets.Data.Models;
 using MovieTickets.Services.Contracts;
+using MovieTickets.Services.ViewModel.Producers;
 
 namespace MovieTickets.Web.Controllers
 {
@@ -11,7 +11,8 @@ namespace MovieTickets.Web.Controllers
     {
         private readonly IProducerService _service;
 
-        public ProducersController(IProducerService service)
+        public ProducersController(IProducerService service
+           )
         {
             _service = service;
         }
@@ -19,9 +20,32 @@ namespace MovieTickets.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            var allProducers = await _service.GetAllAsync();
+            var data = await _service.GetAllAsync();
 
-            return View(allProducers);
+            var producer = new ProducerViewModel();
+
+            var dataQuery = data.AsQueryable()
+                .Select(x => new ProducerViewModel
+                {
+                    Id = x.Id,
+                    ProfilePicture = x.ProfilePicture,
+                    FullName = x.FullName,
+                    Age = x.Age,
+                    Biography = x.Biography,
+                    //Movies = x.Movies.ToList()
+                })
+                .ToList();
+
+            var dto = new AllProducerViewModel
+            {
+                Producers = dataQuery,
+                ProfilePicture= producer.ProfilePicture,
+                FullName= producer.FullName,
+                Age= producer.Age,
+                Biography =producer.Biography
+            };
+
+            return View(dto);
         }
 
         [AllowAnonymous]
@@ -33,20 +57,34 @@ namespace MovieTickets.Web.Controllers
             {
                 return View("NotFound");
             }
-            return View(producerDetails);
+
+            var response = new ProducerViewModel()
+            {
+                Id = producerDetails.Id,
+                ProfilePicture = producerDetails.ProfilePicture,
+                FullName = producerDetails.FullName,
+                Age = producerDetails.Age,
+                Biography = producerDetails.Biography,
+                //Movies = producerDetails.Movies.ToList()
+            };
+
+            return View(response);
         }
 
         public IActionResult Create() => View();
 
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("ProfilePicture, FullName, Biography, Age")]Producer producer)
+        //[Bind("ProfilePicture, FullName, Age, Biography")]
+        public async Task<IActionResult> Create(ProducerViewModel producer)
         {
+           // producer.Movies = new List<Movie>();
             if (!ModelState.IsValid)
             {
+
                 return View(producer);
             }
 
-            await _service.AddAsync(producer);
+            await _service.AddNewProducerAsync(producer);
 
             return RedirectToAction(nameof(Index));
         }
@@ -59,11 +97,23 @@ namespace MovieTickets.Web.Controllers
             {
                 return View("NotFound");
             }
-            return View(producerDetails);
+
+            var response = new ProducerViewModel
+            {
+                Id = producerDetails.Id,
+                ProfilePicture = producerDetails.ProfilePicture,
+                FullName = producerDetails.FullName,
+                Age = producerDetails.Age,
+                Biography = producerDetails.Biography
+
+            };
+
+            return View(response);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id,[Bind("Id,ProfilePicture, FullName, Biography, Age")] Producer producer)
+        //[Bind("Id,ProfilePicture, FullName, Biography, Age")] 
+        public async Task<IActionResult> Edit(int id,ProducerViewModel producer)
         {
             if (!ModelState.IsValid)
             {
@@ -72,7 +122,7 @@ namespace MovieTickets.Web.Controllers
 
             if (id == producer.Id)
             {
-                await _service.UpdateAsync(id, producer);
+                await _service.UpdateProducerAsync(producer);
                 return RedirectToAction(nameof(Index));
 
             }

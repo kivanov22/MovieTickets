@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using MovieTickets.Data.Data.Static;
 using MovieTickets.Services.Contracts;
 using MovieTickets.Services.ViewModel;
+using MovieTickets.Web.ViewModels.Movies;
 
 namespace MovieTickets.Web.Controllers
 {
@@ -47,18 +48,42 @@ namespace MovieTickets.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
-            var movieDetail = await _service.GetMovieByIdAsync(id);
+            var movieDetails = await _service.GetMovieByIdAsync(id);
 
-            return View(movieDetail);
+            if (movieDetails == null)
+            {
+                return View("NotFound");
+            }
+
+            var response = new MovieVM()
+            {
+                Id = movieDetails.Id,
+                Title = movieDetails.Title,
+                Description = movieDetails.Description,
+                Language = movieDetails.Language,
+                Duration = movieDetails.Duration,
+                Price = movieDetails.Price,
+                ImageUrl = movieDetails.ImageUrl,
+                Genre = movieDetails.Genre,
+                Resolution = movieDetails.Resolution,
+                CinemaId = movieDetails.CinemaId,
+                ProducerId = movieDetails.ProducerId,
+                Cinema = movieDetails.Cinema,
+                Producer = movieDetails.Producer,
+                MovieActors = movieDetails.MovieActors
+            };
+
+
+            return View(response);
         }
 
         public async Task<IActionResult> Create()
         {
             var movieDropdownsData = await _service.GetNewMovieDropdownsValues();
 
-            ViewBag.CinemaId = new SelectList(movieDropdownsData.Cinemas, "Id", "CinemaName");
-            ViewBag.ProducerId = new SelectList(movieDropdownsData.Producers, "Id", "FullName");
-            ViewBag.ActorIds = new SelectList(movieDropdownsData.Actors, "Id", "FullName");//ActorId maybe
+            ViewBag.Cinemas = new SelectList(movieDropdownsData.Cinemas, "Id", "CinemaName");
+            ViewBag.Producers = new SelectList(movieDropdownsData.Producers, "Id", "FullName");
+            ViewBag.Actors = new SelectList(movieDropdownsData.Actors, "Id", "FullName");//ActorId maybe
 
             return View();
         }
@@ -103,9 +128,9 @@ namespace MovieTickets.Web.Controllers
 
             var movieDropdownsData = await _service.GetNewMovieDropdownsValues();
 
-            ViewBag.CinemaId = new SelectList(movieDropdownsData.Cinemas, "Id", "CinemaName");
-            ViewBag.ProducerId = new SelectList(movieDropdownsData.Producers, "Id", "FullName");
-            ViewBag.ActorIds = new SelectList(movieDropdownsData.Actors, "Id", "FullName");//ActorId maybe
+            ViewBag.Cinemas = new SelectList(movieDropdownsData.Cinemas, "Id", "CinemaName");
+            ViewBag.Producers = new SelectList(movieDropdownsData.Producers, "Id", "FullName");
+            ViewBag.Actors = new SelectList(movieDropdownsData.Actors, "Id", "FullName");//ActorId maybe
 
             return View();
         }
@@ -122,9 +147,9 @@ namespace MovieTickets.Web.Controllers
             {
                 var movieDropdownsData = await _service.GetNewMovieDropdownsValues();
 
-                ViewBag.CinemaId = new SelectList(movieDropdownsData.Cinemas, "Id", "CinemaName");
-                ViewBag.ProducerId = new SelectList(movieDropdownsData.Producers, "Id", "FullName");
-                ViewBag.ActorIds = new SelectList(movieDropdownsData.Actors, "Id", "FullName");//ActorId maybe
+                ViewBag.Cinemas = new SelectList(movieDropdownsData.Cinemas, "Id", "CinemaName");
+                ViewBag.Producers = new SelectList(movieDropdownsData.Producers, "Id", "FullName");
+                ViewBag.Actors = new SelectList(movieDropdownsData.Actors, "Id", "FullName");//ActorId maybe
 
                 return View(movie);
             }

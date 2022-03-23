@@ -14,5 +14,6 @@ namespace MovieTickets.Data.Data.Common
         Task UpdateAsync(int id, T entity);
 
         Task DeleteAsync(int id);
+        //void Delete(T entity);
     }
 }

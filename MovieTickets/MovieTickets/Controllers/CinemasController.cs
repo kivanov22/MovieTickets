@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MovieTickets.Data.Data.Static;
-using MovieTickets.Data.Models;
 using MovieTickets.Services.Contracts;
+using MovieTickets.Services.ViewModel.Cinemas;
 
 namespace MovieTickets.Web.Controllers
 {
     [Authorize(Roles = UserRoles.Admin)]
-    public class CinemasController:Controller
+    public class CinemasController : Controller
     {
         private readonly ICinemaService _service;
 
@@ -21,21 +21,42 @@ namespace MovieTickets.Web.Controllers
         {
             var allCinemas = await _service.GetAllAsync();
 
-            return View(allCinemas);
+            var cinema = new CinemaViewModel();
+
+            var cinemaQuery = allCinemas
+                .AsQueryable()
+                .Select(x => new CinemaViewModel
+                {
+                    Id =x.Id,
+                    Logo = x.Logo,
+                    CinemaName = x.CinemaName,
+                    City = x.City,
+                    CinemaAddress = x.CinemaAddress,
+                   // Movies = x.Movies.ToList()
+                })
+                .ToList();
+
+            var dto = new AllCinemasViewModel
+            {
+                Cinemas = cinemaQuery,
+            };
+
+            return View(dto);
         }
 
         public IActionResult Create() => View();
 
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("Logo, CinemaName, City, CinemaAddress")] Cinema cinema)
+        //[Bind("Logo, CinemaName, City, CinemaAddress")]
+        public async Task<IActionResult> Create(CinemaViewModel cinema)
         {
+            //ModelState.Remove("Movies");
             if (!ModelState.IsValid)
             {
                 return View(cinema);
             }
 
-            await _service.AddAsync(cinema);
-
+            await _service.AddNewCinemaAsync(cinema);
             return RedirectToAction(nameof(Index));
         }
 
@@ -49,7 +70,17 @@ namespace MovieTickets.Web.Controllers
             {
                 return View("NotFound");
             }
-            return View(cinemaDetails);
+
+            var response = new CinemaViewModel()
+            {
+                Id = cinemaDetails.Id,
+                Logo = cinemaDetails.Logo,
+                CinemaName = cinemaDetails.CinemaName,
+                City = cinemaDetails.City,
+                CinemaAddress = cinemaDetails.CinemaAddress,
+                //Movies = cinemaDetails.Movies.ToList()
+            };
+            return View(response);
         }
 
         public async Task<IActionResult> Edit(int id)
@@ -60,24 +91,35 @@ namespace MovieTickets.Web.Controllers
             {
                 return View("NotFound");
             }
-            return View(cinemaDetails);
+
+            var response = new CinemaViewModel()
+            {
+                Id = cinemaDetails.Id,
+                Logo = cinemaDetails.Logo,
+                CinemaName = cinemaDetails.CinemaName,
+                City = cinemaDetails.City,
+                CinemaAddress = cinemaDetails.CinemaAddress,
+                //Movies = cinemaDetails.Movies.ToList()
+            };
+
+            return View(response);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Logo, CinemaName, City, CinemaAddress")] Cinema cinema)
+        //[Bind("Id,Logo, CinemaName, City, CinemaAddress")]
+        public async Task<IActionResult> Edit(int id, CinemaViewModel cinema)
         {
             if (!ModelState.IsValid)
             {
                 return View(cinema);
             }
 
-            if (id == cinema.Id)
+            if (id != cinema.Id)
             {
-                await _service.UpdateAsync(id, cinema);
-                return RedirectToAction(nameof(Index));
-
+                return View("NotFound");
             }
-            return View(cinema);
+            await _service.UpdateCinemaAsync(cinema);
+            return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> Delete(int id)
@@ -88,7 +130,17 @@ namespace MovieTickets.Web.Controllers
             {
                 return View("NotFound");
             }
-            return View(cinemaDetails);
+
+            var cineaModel = new CinemaViewModel
+            {
+                Id = cinemaDetails.Id,
+                Logo = cinemaDetails.Logo,
+                CinemaName = cinemaDetails.CinemaName,
+                City = cinemaDetails.City,
+                CinemaAddress = cinemaDetails.CinemaAddress,
+            };
+
+            return View(cineaModel);
         }
 
         [HttpPost, ActionName("Delete")]
@@ -101,8 +153,16 @@ namespace MovieTickets.Web.Controllers
                 return View("NotFound");
             }
 
-            await _service.DeleteAsync(id);
+            var cineaModel = new CinemaViewModel
+            {
+                Id = cinemaDetails.Id,
+                Logo = cinemaDetails.Logo,
+                CinemaName = cinemaDetails.CinemaName,
+                City = cinemaDetails.City,
+                CinemaAddress = cinemaDetails.CinemaAddress,
+            };
 
+            await _service.DeleteCinemaAsync(cineaModel.Id);
             return RedirectToAction(nameof(Index));
         }
     }

@@ -19,6 +19,11 @@ namespace MovieTickets.Data.Data.Common
             await _context.SaveChangesAsync();
         }
 
+        //public void Delete(T entity)
+        //{
+        //    this._dbSet.Remove(entity);
+        //}
+
         public async Task DeleteAsync(int id)
         {
             var entity = await _context.Set<T>().FirstOrDefaultAsync(n => n.Id == id);

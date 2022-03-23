@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ActorViewModel>
+﻿@model AllActorsViewModel
 
 @{
     ViewBag.Title = "List of Actors";
@@ -20,7 +20,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+                @foreach (var item in Model.Actors)
                 {
                 <tr>
                     <td class="align-middle">

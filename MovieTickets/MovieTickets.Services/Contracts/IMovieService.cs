@@ -12,6 +12,5 @@ namespace MovieTickets.Services.Contracts
 
         Task AddNewMovieAsync(NewMovieVM data);
         Task UpdateMovieAsync(NewMovieVM data);
-
     }
 }

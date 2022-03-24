@@ -29,16 +29,15 @@ namespace MovieTickets.Services.Services
             await _context.Actors.AddAsync(newActor);
             await _context.SaveChangesAsync();
 
-            //foreach (var actorId in data.ActorIds)
-            //{
-            //    var newMovieActor = new MovieActor
-            //    {
-            //        MovieId = newMovie.Id,
-            //        ActorId = actorId,
-            //    };
-            //    await _context.MovieActors.AddAsync(newMovieActor);
-            //}
         }
+
+        //public async Task DeleteActorAsync(int id)
+        //{
+        //    var dbActor = await _context.Actors.FirstOrDefaultAsync(x => x.Id == id);
+
+        //    _context.Remove<Actor>(dbActor);
+        //    await _context.SaveChangesAsync();
+        //}
 
         public async Task<Actor> GetActorByIdAsync(int id)
         {

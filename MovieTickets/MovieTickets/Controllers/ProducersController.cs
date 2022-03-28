@@ -80,7 +80,6 @@ namespace MovieTickets.Web.Controllers
            // producer.Movies = new List<Movie>();
             if (!ModelState.IsValid)
             {
-
                 return View(producer);
             }
 

@@ -23,21 +23,19 @@ namespace MovieTickets.Web.Controllers
             var data = await _service.GetAllAsync();
             var actors = new ActorViewModel();
 
-           var dataQuery = data.AsQueryable()
+            var dataQuery = data.AsQueryable()
+                 .Select(x => new ActorViewModel
+                 {
+                     ActorId = x.Id,
+                     ProfilePicture = x.ProfilePicture,
+                     FullName = x.FullName,
+                     Age = x.Age,
+                     Biography = x.Biography,
+                     MovieActors = x.MovieActors.ToList()
+                 })
+             .ToList();
 
-            // dataQuery
-                .Select(x => new ActorViewModel
-            {
-                ActorId = x.Id,
-                ProfilePicture = x.ProfilePicture,
-                FullName = x.FullName,
-                Age = x.Age,
-                Biography = x.Biography,
-                MovieActors = x.MovieActors.ToList()
-            })
-            .ToList();
 
-          
 
             var allActors = new AllActorsViewModel
             {
@@ -111,31 +109,16 @@ namespace MovieTickets.Web.Controllers
         //[Bind("Id,FullName,ProfilePicture,Age,Biography")]
         public async Task<IActionResult> Edit(int id, ActorViewModel actor)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(actor);
+            }
+
+
             if (id != actor.ActorId)
             {
                 return View("NotFound");
             }
-
-            //??
-            //if (!ModelState.IsValid)
-            //{
-            //    var movieDropdownsData = await _service.GetNewMovieDropdownsValues();
-
-            //    ViewBag.Cinemas = new SelectList(movieDropdownsData.Cinemas, "Id", "CinemaName");
-            //    ViewBag.Producers = new SelectList(movieDropdownsData.Producers, "Id", "FullName");
-            //    ViewBag.Actors = new SelectList(movieDropdownsData.Actors, "Id", "FullName");//ActorId maybe
-
-            //    return View(movie);
-            //}
-
-            //var modelActor = new ActorViewModel
-            //{
-            //    ActorId = actor.Id,
-            //    ProfilePicture = actor.ProfilePicture,
-            //    FullName = actor.FullName,
-            //    Age = actor.Age,
-            //    Biography = actor.Biography
-            //};
 
             await _service.UpdateActorAsync(actor);
             return RedirectToAction(nameof(Index));

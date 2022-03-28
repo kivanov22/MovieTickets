@@ -15,14 +15,10 @@ namespace MovieTickets.Data.Data.Common
 
         public async Task AddAsync(T entity)
         {
-         await _context.Set<T>().AddAsync(entity);
+            await _context.Set<T>().AddAsync(entity);
             await _context.SaveChangesAsync();
         }
 
-        //public void Delete(T entity)
-        //{
-        //    this._dbSet.Remove(entity);
-        //}
 
         public async Task DeleteAsync(int id)
         {
@@ -35,10 +31,10 @@ namespace MovieTickets.Data.Data.Common
         public async Task<IEnumerable<T>> GetAllAsync()
         {
             var result = await _context.Set<T>().ToListAsync();
-                return result;
+            return result;
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T,object>>[] includeProperties)
+        public async Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includeProperties)
         {
             IQueryable<T> query = _context.Set<T>();
             query = includeProperties.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));

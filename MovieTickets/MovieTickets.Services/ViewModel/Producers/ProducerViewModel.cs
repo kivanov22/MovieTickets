@@ -27,6 +27,6 @@ namespace MovieTickets.Services.ViewModel.Producers
         public string Biography { get; set; }
 
         //Relationships
-        //public List<Movie> Movies { get; set; }
+        public List<Movie> Movies { get; set; }
     }
 }

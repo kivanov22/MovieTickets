@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MovieTickets.Data.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace MovieTickets.Services.ViewModel.Cinemas
 {
@@ -26,6 +27,6 @@ namespace MovieTickets.Services.ViewModel.Cinemas
 
         //Relationships
         
-        //public List<Movie> Movies { get; set; }
+        public List<Movie> Movies { get; set; }
     }
 }

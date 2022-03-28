@@ -31,13 +31,7 @@ namespace MovieTickets.Services.Services
 
         }
 
-        //public async Task DeleteActorAsync(int id)
-        //{
-        //    var dbActor = await _context.Actors.FirstOrDefaultAsync(x => x.Id == id);
-
-        //    _context.Remove<Actor>(dbActor);
-        //    await _context.SaveChangesAsync();
-        //}
+       
 
         public async Task<Actor> GetActorByIdAsync(int id)
         {

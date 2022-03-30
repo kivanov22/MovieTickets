@@ -5,6 +5,7 @@ using MovieTickets.Data.Data.Seeding;
 using MovieTickets.Data.Models;
 using MovieTickets.Services.Contracts;
 using MovieTickets.Services.Services;
+using MovieTickets.Web.Extensions;
 using MovieTickets.Web.ViewModels.Orders;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -45,6 +46,9 @@ var app = builder.Build();
 //}
 
 // Configure the HTTP request pipeline.
+
+//app.PrepareDatabase();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();

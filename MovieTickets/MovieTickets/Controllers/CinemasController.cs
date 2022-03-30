@@ -32,7 +32,7 @@ namespace MovieTickets.Web.Controllers
                     CinemaName = x.CinemaName,
                     City = x.City,
                     CinemaAddress = x.CinemaAddress,
-                   // Movies = x.Movies.ToList()
+                    //Movies = x.Movies.ToList()
                 })
                 .ToList();
 
@@ -99,7 +99,7 @@ namespace MovieTickets.Web.Controllers
                 CinemaName = cinemaDetails.CinemaName,
                 City = cinemaDetails.City,
                 CinemaAddress = cinemaDetails.CinemaAddress,
-                //Movies = cinemaDetails.Movies.ToList()
+               // Movies = cinemaDetails.Movies.ToList()
             };
 
             return View(response);

@@ -26,7 +26,7 @@ namespace MovieTickets.Web.Controllers
             var dataQuery = data.AsQueryable()
                  .Select(x => new ActorViewModel
                  {
-                     ActorId = x.Id,
+                     Id = x.Id,
                      ProfilePicture = x.ProfilePicture,
                      FullName = x.FullName,
                      Age = x.Age,
@@ -76,7 +76,7 @@ namespace MovieTickets.Web.Controllers
 
             var response = new ActorViewModel()
             {
-                ActorId = actorDetails.Id,
+                Id = actorDetails.Id,
                 ProfilePicture = actorDetails.ProfilePicture,
                 FullName = actorDetails.FullName,
                 Age = actorDetails.Age,
@@ -95,7 +95,7 @@ namespace MovieTickets.Web.Controllers
 
             var response = new ActorViewModel
             {
-                ActorId = actorDetails.Id,
+                Id = actorDetails.Id,
                 ProfilePicture = actorDetails.ProfilePicture,
                 FullName = actorDetails.FullName,
                 Age = actorDetails.Age,
@@ -114,8 +114,8 @@ namespace MovieTickets.Web.Controllers
                 return View(actor);
             }
 
-
-            if (id != actor.ActorId)
+            //id difference
+            if (id != actor.Id)
             {
                 return View("NotFound");
             }
@@ -132,7 +132,7 @@ namespace MovieTickets.Web.Controllers
 
             var actorView = new ActorViewModel
             {
-                ActorId = actorDetails.Id,
+                Id = actorDetails.Id,
                 ProfilePicture = actorDetails.ProfilePicture,
                 FullName = actorDetails.FullName,
                 Age = actorDetails.Age,
@@ -150,14 +150,14 @@ namespace MovieTickets.Web.Controllers
 
             var actorView = new ActorViewModel
             {
-                ActorId = actorDetails.Id,
+                Id = actorDetails.Id,
                 ProfilePicture = actorDetails.ProfilePicture,
                 FullName = actorDetails.FullName,
                 Age = actorDetails.Age,
                 Biography = actorDetails.Biography
             };
 
-            await _service.DeleteAsync(actorView.ActorId);
+            await _service.DeleteAsync(actorView.Id);
             return RedirectToAction(nameof(Index));
         }
     }

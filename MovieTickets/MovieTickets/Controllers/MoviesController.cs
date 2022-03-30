@@ -25,7 +25,7 @@ namespace MovieTickets.Web.Controllers
         {
             var allMovies = await _service.GetAllAsync(n => n.Cinema);
 
-            var movie = new MovieVM();
+            //var movie = new MovieVM();
 
             var movieQuery = allMovies
                 .AsQueryable()
@@ -38,6 +38,8 @@ namespace MovieTickets.Web.Controllers
                     Duration = x.Duration,
                     Price = x.Price,
                     ImageUrl = x.ImageUrl,
+                    StartDate = x.StartDate,
+                    EndDate = x.EndDate,
                     Genre = x.Genre,
                     Resolution = x.Resolution,
                     CinemaId = x.CinemaId,
@@ -59,13 +61,45 @@ namespace MovieTickets.Web.Controllers
         {
             var allMovies = await _service.GetAllAsync(n => n.Cinema);
 
+
             if (!string.IsNullOrEmpty(searchString))
             {
-                var filteredResult = allMovies
-                    .Where(n => n.Title.Contains(searchString)
-                    || n.Description.Contains(searchString)).ToList();
+                var movieQuery = allMovies
+               .AsQueryable()
+               .Select(x => new MovieVM
+               {
+                   Id = x.Id,
+                   Title = x.Title,
+                   Description = x.Description,
+                   Language = x.Language,
+                   Duration = x.Duration,
+                   Price = x.Price,
+                   ImageUrl = x.ImageUrl,
+                   StartDate = x.StartDate,
+                   EndDate = x.EndDate,
+                   Genre = x.Genre,
+                   Resolution = x.Resolution,
+                   CinemaId = x.CinemaId,
+                   ProducerId = x.ProducerId,
+                   Cinema = x.Cinema,
+                   Producer = x.Producer,
+                   MovieActors = x.MovieActors
+               })
+               .ToList();
 
-                return View("Index", filteredResult);
+                var filteredResult = movieQuery
+                // .Where(n => string.Equals(n.Title, searchString, StringComparison.CurrentCultureIgnoreCase)
+                //|| string.Equals(n.Description, searchString, StringComparison.CurrentCultureIgnoreCase))
+                //.ToList();
+                .Where(n => n.Title.Contains(searchString)
+                || n.Description.Contains(searchString)).ToList();
+
+                var dto = new AllMovieViewModel
+                {
+                    Movies = filteredResult,
+                };
+
+                return View("Index", dto);
 
             }
 
@@ -121,11 +155,16 @@ namespace MovieTickets.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
+                var movieDropdownsData = await _service.GetNewMovieDropdownsValues();
+
+                ViewBag.Cinemas = new SelectList(movieDropdownsData.Cinemas, "Id", "CinemaName");
+                ViewBag.Producers = new SelectList(movieDropdownsData.Producers, "Id", "FullName");
+                ViewBag.Actors = new SelectList(movieDropdownsData.Actors, "Id", "FullName");
+
                 return View(movie);
             }
 
             await _service.AddNewMovieAsync(movie);
-
             return RedirectToAction(nameof(Index));
         }
 
@@ -147,6 +186,8 @@ namespace MovieTickets.Web.Controllers
                 Duration = movieDetails.Duration,
                 Price = movieDetails.Price,
                 ImageUrl = movieDetails.ImageUrl,
+                StartDate = movieDetails.StartDate,
+                EndDate = movieDetails.EndDate,
                 Genre = movieDetails.Genre,
                 Resolution = movieDetails.Resolution,
                 CinemaId = movieDetails.CinemaId,
@@ -158,9 +199,9 @@ namespace MovieTickets.Web.Controllers
 
             ViewBag.Cinemas = new SelectList(movieDropdownsData.Cinemas, "Id", "CinemaName");
             ViewBag.Producers = new SelectList(movieDropdownsData.Producers, "Id", "FullName");
-            ViewBag.Actors = new SelectList(movieDropdownsData.Actors, "Id", "FullName");//ActorId maybe
+            ViewBag.Actors = new SelectList(movieDropdownsData.Actors, "Id", "FullName");
 
-            return View();
+            return View(response);
         }
 
         [HttpPost]
@@ -177,7 +218,7 @@ namespace MovieTickets.Web.Controllers
 
                 ViewBag.Cinemas = new SelectList(movieDropdownsData.Cinemas, "Id", "CinemaName");
                 ViewBag.Producers = new SelectList(movieDropdownsData.Producers, "Id", "FullName");
-                ViewBag.Actors = new SelectList(movieDropdownsData.Actors, "Id", "FullName");//ActorId maybe
+                ViewBag.Actors = new SelectList(movieDropdownsData.Actors, "Id", "FullName");
 
                 return View(movie);
             }

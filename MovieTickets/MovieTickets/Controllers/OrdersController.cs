@@ -47,8 +47,9 @@ namespace MovieTickets.Web.Controllers
 
             return View(response);
         }
-
-        public async Task<IActionResult> AddToShoppingCart(int id)
+        //AddItemToShoppingCart
+        //AddToShoppingCart
+        public async Task<IActionResult> AddItemToShoppingCart(int id)
         {
             var item = await _moviesService.GetByIdAsync(id);
 

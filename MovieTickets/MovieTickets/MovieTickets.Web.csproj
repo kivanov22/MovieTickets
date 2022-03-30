@@ -1,11 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-MovieTickets-118234E8-C0AE-4066-9217-33D0886208DF</UserSecretsId>
-    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>

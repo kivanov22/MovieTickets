@@ -43,11 +43,11 @@ namespace MovieTickets.Services.Services
 
         public async Task UpdateActorAsync(ActorViewModel data)
         {
-            var dbActor = await _context.Actors.FirstOrDefaultAsync(x => x.Id == data.ActorId);
+            var dbActor = await _context.Actors.FirstOrDefaultAsync(x => x.Id == data.Id);
 
             if (dbActor != null)
             {
-
+                //dbActor.Id = data.ActorId;
                 dbActor.ProfilePicture = data.ProfilePicture;
                 dbActor.FullName = data.FullName;
                 dbActor.Age = data.Age;

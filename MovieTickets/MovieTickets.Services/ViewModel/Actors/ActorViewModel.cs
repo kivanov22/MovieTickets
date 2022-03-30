@@ -6,7 +6,7 @@
     public class ActorViewModel
     {
         [Key]
-        public int ActorId { get; set; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage =ProfilePictureError)]
         [Display(Name =DisplayProfilePicture)]

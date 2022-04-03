@@ -15,11 +15,14 @@ namespace MovieTickets.Services.ViewModel.Producers
 
         [Display(Name = DisplayFullName)]
         [Required(ErrorMessage = FullNameError)]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "Full Name must be between 3 and 50 chars")]
+        [StringLength(FullNameMaxLength,
+            MinimumLength = FullNameMinLength,
+            ErrorMessage = "Full Name must be between {2} and {1} chars")]
+        
         public string FullName { get; set; }
 
-        [Display(Name = "Age")]
-        [Required(ErrorMessage = "Age is required")]
+        [Display(Name = DisplayAge)]
+        [Required(ErrorMessage = AgeError)]
         public int Age { get; set; }
 
         [Display(Name = DisplayBiography)]

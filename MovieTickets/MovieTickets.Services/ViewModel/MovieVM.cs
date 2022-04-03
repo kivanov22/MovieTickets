@@ -30,9 +30,9 @@
 
         public int Duration { get; set; }
 
-        public Genre Genre { get; set; }
+        public string Genre { get; set; }
 
-        public Resolution Resolution { get; set; }
+        public string Resolution { get; set; }
 
         public double Price { get; set; }
 

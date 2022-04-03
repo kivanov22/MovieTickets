@@ -32,6 +32,7 @@ namespace MovieTickets.Services.ViewModel.Movies
 
         public string Genre { get; set; }
 
+        
         public string Resolution { get; set; }
 
         public double Price { get; set; }

@@ -41,6 +41,19 @@
         public const int TicketPriceMaxLength = 50;
 
         //Display attributes
+        public const string DisplayMovieName = "Movie name";
+        public const string DisplayMovieLanguage = "Movie language";
+        public const string DisplayMovieDuration = "Movie duration";
+        public const string DisplayMoviePrice = "Price in $";
+        public const string DisplayMovieUrl = "Movie poster URL";
+        public const string DisplayMovieStartDate = "Movie start date";
+        public const string DisplayMovieEndDate = "Movie end date";
+        public const string DisplayMovieGenre = "Select a genre";
+        public const string DisplayMovieResolution = "Select a resolution";
+        public const string DisplayMovieActors = "Select actor(s)";
+        public const string DisplayMovieProducer = "Select a producer";
+        public const string DisplayMovieCinema = "Select a cinema";
+        public const string DisplayMovieDescription = "Movie description";
         public const string DisplayProfilePicture = "Profile Picture";
         public const string DisplayFullName = "Full Name";
         public const string DisplayBiography = "Biography";
@@ -53,6 +66,20 @@
         public const string DisplayCity = "City";
 
         //Display errors
+        public const string LanguageError = "Language is required";
+        public const string DurationError = "Duration is required";
+        public const string PriceError = "Price is required";
+        public const string PosterError = "Movie poster is required";
+        public const string StartDateError = "Start date is required";
+        public const string EndDateError = "End date is required";
+
+        public const string GenreError = "Genre is required";
+        public const string ResolutionError = "Resolution is required";
+        public const string ActorsError = "Actor(s) is required";
+        public const string ProducerError = "Producer is required";
+        public const string CinemaError = "Cinema is required";
+
+
         public const string ProfilePictureError = "Profile picture is required";
         public const string FullNameError = "Full Name is required";
         public const string BiographyError = "Biography is required";
@@ -64,5 +91,9 @@
         public const string CinemaNameError = "Cinema name is required";
         public const string CinemaAddressError = "Cinema address is required";
         public const string CinemaCityError = "City is required";
+        public const string AgeError = "Age is required";
+
+
+
     }
 }

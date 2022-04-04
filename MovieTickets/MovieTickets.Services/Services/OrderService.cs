@@ -2,6 +2,7 @@
 using MovieTickets.Data;
 using MovieTickets.Data.Models;
 using MovieTickets.Services.Contracts;
+using MovieTickets.Services.ViewModel.Orders;
 
 namespace MovieTickets.Services.Services
 {
@@ -14,12 +15,21 @@ namespace MovieTickets.Services.Services
             _context = context;
         }
 
-        public async Task<List<Order>> GetOrdersByUserIdAndRoleAsync(string userId,string userRole)
+        public async Task<List<OrderViewModel>> GetOrdersByUserIdAndRoleAsync(string userId,string userRole)
         {
             var orders = await _context.Orders
                 .Include(o => o.OrderItems)
                 .ThenInclude(m => m.Movie)
-                .Where(u => u.UserId == userId)
+                .Include(u=>u.User)
+                //.Where(u => u.UserId == userId)
+                .Select(x => new OrderViewModel
+                {
+                    Id = x.Id,
+                    Email = x.Email,
+                    UserId = x.UserId,
+                    User = x.User,
+                    OrderItems = x.OrderItems
+                })
                 .ToListAsync();
 
             if (userRole != "Admin")

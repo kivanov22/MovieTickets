@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MovieTickets.Services.Contracts;
+using MovieTickets.Services.ViewModel.Orders;
 using MovieTickets.Web.ViewModels.Orders;
 using System.Security.Claims;
 
@@ -28,6 +29,19 @@ namespace MovieTickets.Web.Controllers
             string userRole = User.FindFirstValue(ClaimTypes.Role);
 
             var orders = await _orderService.GetOrdersByUserIdAndRoleAsync(userId,userRole);
+
+            //var ordersQuery = orders
+            //     .AsQueryable()
+            //     .Select(x => new OrderViewModel
+            //     {
+            //         Id = x.Id,
+            //         Email = x.Email,
+            //         UserId = x.UserId,
+            //         User = x.User,
+            //         OrderItems = x.OrderItems
+            //     })
+            //     .ToList();
+
 
             return View(orders);
         }

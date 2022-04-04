@@ -1,4 +1,5 @@
 ﻿using MovieTickets.Data.Models;
+using MovieTickets.Services.ViewModel.Orders;
 
 namespace MovieTickets.Services.Contracts
 {
@@ -6,6 +7,6 @@ namespace MovieTickets.Services.Contracts
     {
         Task StoreOrderAsync(List<ShoppingCartItem> items, string userId, string userEmailAddress);
 
-        Task<List<Order>> GetOrdersByUserIdAndRoleAsync(string userId,string userRole);
+        Task<List<OrderViewModel>> GetOrdersByUserIdAndRoleAsync(string userId,string userRole);
     }
 }

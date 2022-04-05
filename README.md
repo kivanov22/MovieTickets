@@ -47,7 +47,7 @@ MovieTickets is a ASP.NET Core MVC 6.0 web application I builded during C# ASP.N
 
 # Database Diagram
 
-<kbd><img src="https://github.com/kivanov22/MovieTickets/Img/DatabaseDiagramFull.png" /></kbd>
+<kbd><img src="https://github.com/kivanov22/MovieTickets/MovieTickets/Img/DatabaseDiagramFull.png" /></kbd>
 <br/><br/>
 
 # Test

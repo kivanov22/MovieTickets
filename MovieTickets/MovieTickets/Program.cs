@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MovieTickets.Data;
+using MovieTickets.Data.Data.Common;
 using MovieTickets.Data.Data.Seeding;
 using MovieTickets.Data.Models;
 using MovieTickets.Services.Contracts;
@@ -11,24 +12,27 @@ using MovieTickets.Web.ViewModels.Orders;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<MovieTicketsDbContext>(options =>
-    options.UseSqlServer(connectionString));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+//var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+//builder.Services.AddDbContext<MovieTicketsDbContext>(options =>
+//    options.UseSqlServer(connectionString));
+//builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+builder.Services.AddApplicationDbContexts(builder.Configuration);
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => 
 options.SignIn.RequireConfirmedAccount = false)//true
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<MovieTicketsDbContext>();
 
-builder.Services.AddScoped<IActorService, ActorService>();
-builder.Services.AddScoped<IProducerService, ProducerService>();
-builder.Services.AddScoped<IMovieService, MovieService>();
-builder.Services.AddScoped<ICinemaService, CinemaService>();
-builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddApplicationServices();
 
-builder.Services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
-builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
+//builder.Services.AddScoped<IActorService, ActorService>();
+//builder.Services.AddScoped<IProducerService, ProducerService>();
+//builder.Services.AddScoped<IMovieService, MovieService>();
+//builder.Services.AddScoped<ICinemaService, CinemaService>();
+//builder.Services.AddScoped<IOrderService, OrderService>();
+
+//builder.Services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
+//builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
 
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();

@@ -7,10 +7,10 @@ using MovieTickets.Services.ViewModel.Actors;
 
 namespace MovieTickets.Services.Services
 {
-    public class ActorService :EntityBaseRepository<Actor>, IActorService
+    public class ActorService : EntityBaseRepository<Actor>, IActorService
     {
         private readonly MovieTicketsDbContext _context;
-        public ActorService(MovieTicketsDbContext context):base(context)
+        public ActorService(MovieTicketsDbContext context) : base(context)
         {
             _context = context;
         }
@@ -19,19 +19,29 @@ namespace MovieTickets.Services.Services
         {
             var newActor = new Actor()
             {
-               ProfilePicture = data.ProfilePicture,
-               FullName = data.FullName,
-               Age = data.Age,
-               Biography = data.Biography,
+                ProfilePicture = data.ProfilePicture,
+                FullName = data.FullName,
+                Age = data.Age,
+                Biography = data.Biography,
 
             };
+
+            if (newActor == null)
+            {
+                throw new ArgumentException("Unknown actor");
+            }
+
+            if (string.IsNullOrWhiteSpace(data.Biography))
+            {
+                throw new ArgumentException("Biography is required");
+            }
 
             await _context.Actors.AddAsync(newActor);
             await _context.SaveChangesAsync();
 
         }
 
-       
+
 
         public async Task<Actor> GetActorByIdAsync(int id)
         {

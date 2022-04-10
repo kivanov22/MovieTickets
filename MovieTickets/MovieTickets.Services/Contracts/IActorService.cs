@@ -4,7 +4,7 @@ using MovieTickets.Services.ViewModel.Actors;
 
 namespace MovieTickets.Services.Contracts
 {
-    public interface IActorService:IEntityBaseRepository<Actor>
+    public interface IActorService : IEntityBaseRepository<Actor>
     {
         Task<Actor> GetActorByIdAsync(int id);
         Task AddNewActorAsync(ActorViewModel data);

@@ -47,7 +47,7 @@ MovieTickets is a ASP.NET Core MVC 6.0 web application I builded during C# ASP.N
 
 # Database Diagram
 
-<kbd><img src="https://github.com/kivanov22/MovieTickets/tree/main/MovieTickets/Img/DatabaseDiagramFull.png" /></kbd>
+<img src="https://github.com/kivanov22/MovieTickets/tree/main/MovieTickets/Img/DatabaseDiagramFull.png" alt="Diagram" />
 <br/><br/>
 
 # Test
@@ -56,5 +56,5 @@ MovieTickets is a ASP.NET Core MVC 6.0 web application I builded during C# ASP.N
 * Nunit
 * SQLite
 * Fine Code Coverage
-<kbd><img src="https://github.com/kivanov22/MovieTickets/tree/main/MovieTickets/Img/CoverageAsPercent2.png" /></kbd>
+<img src="https://github.com/kivanov22/MovieTickets/tree/main/MovieTickets/Img/CoverageAsPercent2.png" alt="Coverage" />
 <br/><br/>

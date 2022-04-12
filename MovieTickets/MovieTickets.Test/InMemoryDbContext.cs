@@ -13,6 +13,7 @@ namespace MovieTickets.Test
         {
             connection = new SqliteConnection("Filename=:memory:");
             connection.Open();
+            
 
             dbContextOptions = new DbContextOptionsBuilder<MovieTicketsDbContext>()
                 .UseSqlite(connection)

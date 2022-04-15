@@ -1,6 +1,7 @@
 ﻿using MovieTickets.Data.Data.Common;
 using MovieTickets.Data.Models;
 using MovieTickets.Services.ViewModel;
+using MovieTickets.Services.ViewModel.Movies;
 
 namespace MovieTickets.Services.Contracts
 {

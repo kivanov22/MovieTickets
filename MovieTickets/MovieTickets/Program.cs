@@ -1,13 +1,7 @@
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using MovieTickets.Data;
-using MovieTickets.Data.Data.Common;
-using MovieTickets.Data.Data.Seeding;
 using MovieTickets.Data.Models;
-using MovieTickets.Services.Contracts;
-using MovieTickets.Services.Services;
 using MovieTickets.Web.Extensions;
-using MovieTickets.Web.ViewModels.Orders;
 
 var builder = WebApplication.CreateBuilder(args);
 

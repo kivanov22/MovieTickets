@@ -1,7 +1,7 @@
 ﻿using MovieTickets.Data.Models.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace MovieTickets.Services.ViewModel
+namespace MovieTickets.Services.ViewModel.Movies
 {
     using static Data.DataConstants;
     public class NewMovieVM

@@ -1,4 +1,4 @@
-﻿using MovieTickets.Web.ViewModels.Movies;
+﻿using MovieTickets.Services.ViewModels.Movies;
 
 namespace MovieTickets.Services.ViewModel.Movies
 {

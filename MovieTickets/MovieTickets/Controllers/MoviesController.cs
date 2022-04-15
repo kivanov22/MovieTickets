@@ -3,9 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MovieTickets.Data.Data.Static;
 using MovieTickets.Services.Contracts;
-using MovieTickets.Services.ViewModel;
 using MovieTickets.Services.ViewModel.Movies;
-using MovieTickets.Web.ViewModels.Movies;
+using MovieTickets.Services.ViewModels.Movies;
 
 namespace MovieTickets.Web.Controllers
 {

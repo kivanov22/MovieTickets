@@ -1,6 +1,6 @@
 ﻿using MovieTickets.Data.Models;
 
-namespace MovieTickets.Services.ViewModel
+namespace MovieTickets.Services.ViewModel.Movies
 {
     public class NewMovieDropdownsVM
     {

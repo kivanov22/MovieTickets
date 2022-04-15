@@ -5,6 +5,7 @@ using MovieTickets.Data.Models;
 using MovieTickets.Services.Contracts;
 using MovieTickets.Services.Services;
 using MovieTickets.Services.ViewModel;
+using MovieTickets.Services.ViewModel.Movies;
 using NUnit.Framework;
 using System;
 using System.Linq;

@@ -1,7 +1,6 @@
-﻿namespace MovieTickets.Web.ViewModels.Movies
+﻿namespace MovieTickets.Services.ViewModels.Movies
 {
     using MovieTickets.Data.Models;
-    using MovieTickets.Data.Models.Enums;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using static Data.DataConstants;

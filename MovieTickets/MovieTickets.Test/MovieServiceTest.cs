@@ -5,10 +5,8 @@ using MovieTickets.Data.Models;
 using MovieTickets.Services.Contracts;
 using MovieTickets.Services.Services;
 using MovieTickets.Services.ViewModel;
-using MovieTickets.Services.ViewModel.Movies;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -32,7 +30,6 @@ namespace MovieTickets.Test
                 .BuildServiceProvider();
 
             var repo = serviceProvider.GetService<IEntityBaseRepository<Movie>>();
-           // await SeedDbAsync(repo);
         }
 
         [Test]
@@ -88,8 +85,7 @@ namespace MovieTickets.Test
                 .FirstOrDefault();
 
             Assert.AreEqual(movieVM.Title, result.Title);
-
-            // Assert.DoesNotThrowAsync(async () => await service.AddNewMovieAsync(movieVM));
+            Assert.AreNotEqual("Good boys", result.Title);
         }
 
 
@@ -97,9 +93,7 @@ namespace MovieTickets.Test
         public void UpdateMovieShouldWork()
         {
             MovieTicketsDbContext db = GetDb();
-            // int id = 13;
-
-            //id = data.Id;
+            
             var movie = new Movie()
             {
                 //Id = 13,
@@ -138,13 +132,11 @@ namespace MovieTickets.Test
                 //CinemaId = movie.CinemaId,
                 // ProducerId = movie.ProducerId,
             };
-            //var result = service.GetByIdAsync(13);
             var result = service.UpdateMovieAsync(movieVM);
 
             //service.UpdateAsync(movieVM.Id, movie);
             Assert.AreEqual(movieVM.Title,dbMovie.Title);
-
-            //Assert.DoesNotThrowAsync(async () => await service.UpdateMovieAsync(movieVM));
+            Assert.AreNotEqual("Good boys",dbMovie.Title);
         }
 
         [Test]
@@ -173,6 +165,9 @@ namespace MovieTickets.Test
         [Test]
         public void GetMovieById()
         {
+            MovieTicketsDbContext db = GetDb();
+
+
             var movie = new Movie()
             {
                 Id = 1,
@@ -189,6 +184,8 @@ namespace MovieTickets.Test
                 CinemaId = 3,
                 ProducerId = 4
             };
+
+            db.Movies.AddAsync(movie);
             
             var service = serviceProvider.GetService<IMovieService>();
 
@@ -209,10 +206,17 @@ namespace MovieTickets.Test
                ProducerId = movie.ProducerId
             };
 
-           
+            //service.AddNewMovieAsync(movieVM);
 
-            var result = service.GetMovieByIdAsync(1);
-            Assert.AreEqual(movieVM.Id, result.Id);
+            //int id = 13;
+
+            //var findMovie = db.Movies.Where(x=>x.Id ==id).FirstOrDefault();
+
+           //var result = service.GetMovieByIdAsync(13);
+            Assert.DoesNotThrowAsync(async () => await service.GetMovieByIdAsync(movieVM.Id));
+            //Assert.AreEqual(movie.Id, result.Id);
+            //Assert.AreEqual(movieVM.Id, result.Id);
+            //Assert.AreNotEqual(movieVM.Id, result.Id);
         }
 
         [TearDown]
@@ -221,29 +225,6 @@ namespace MovieTickets.Test
             dbContext.Dispose();
         }
 
-        //private async Task SeedDbAsync(IEntityBaseRepository<Movie> repo)
-        //{
-        //    var movie = new Movie()
-        //    {
-        //        Id = 13,
-        //        Title = "Bad boys",
-        //        Description = "Baddest boys on the planet",
-        //        Language = "English",
-        //        Duration = 180,
-        //        Price = 40,
-        //        ImageUrl = "/images/c12.jpg",
-        //        StartDate = DateTime.Now.AddDays(-10),
-        //        EndDate = DateTime.Now.AddDays(10),
-        //        Genre = Data.Models.Enums.Genre.Action,
-        //        Resolution = Data.Models.Enums.Resolution.ThreeD,
-        //        CinemaId = 2,
-        //        ProducerId = 6,
-        //    };
-
-
-
-        //    await repo.AddAsync(movie);
-
-        //}
+        
     }
 }

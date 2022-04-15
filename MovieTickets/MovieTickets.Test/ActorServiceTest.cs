@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using MovieTickets.Data;
 using MovieTickets.Data.Data.Common;
 using MovieTickets.Data.Models;
 using MovieTickets.Services.Contracts;
@@ -6,11 +7,12 @@ using MovieTickets.Services.Services;
 using MovieTickets.Services.ViewModel.Actors;
 using NUnit.Framework;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MovieTickets.Test
 {
-    public class ActorServiceTest
+    public class ActorServiceTest:BaseServiceTests
     {
         private ServiceProvider serviceProvider;
         private InMemoryDbContext dbContext;
@@ -32,15 +34,13 @@ namespace MovieTickets.Test
         }
 
 
-        //[TestCase("something.jpg","",32,"something")]
-        //[TestCase("something.jpg", "Tom Hardy", 32,"v")]
-        //[TestCase("something.jpg", "Tom Hardy", 0,"something")]
-        //[TestCase("something.jpg", "Tom Hardy", 32,"")]
-        //[TestCase("", "Tom Hardy", 32, "something")]
-        //string profilePicture,string fullName,int age,string bio
+      
         [Test]
-        public void AddActorMustWork()
+        public void AddActorMustWorkNewWay()
         {
+            MovieTicketsDbContext db = GetDb();
+
+
             var actor = new Actor()
             {
                 ProfilePicture = "/wwwroot/images/c12.jpg",
@@ -48,6 +48,9 @@ namespace MovieTickets.Test
                 Age = 32,
                 Biography = "Very good biography",
             };
+
+            db.Actors.Add(actor);
+            db.SaveChangesAsync();
 
             var service = serviceProvider.GetService<IActorService>();
 
@@ -59,7 +62,39 @@ namespace MovieTickets.Test
                 Age = actor.Age,
                 Biography = actor.Biography
             };
-           
+
+            service.AddNewActorAsync(actorVM);
+
+            var result = db.Actors.Where(x => x.FullName == "Tom Hardy")
+                .FirstOrDefault();
+
+            Assert.AreEqual(actorVM.FullName, result.FullName);
+        }
+
+        [Test]
+        public void AddActorShouldWork()
+        {
+
+            var actor = new Actor()
+            {
+                Id = 16,
+                ProfilePicture = "/images/" + "c12" + "." + "jpg",
+                FullName = "Tom Hardy",
+                Age = 32,
+                Biography = "Very goood actor!",
+            };
+
+            var actorVM = new ActorViewModel();
+
+            actorVM.Id = actor.Id;
+            actorVM.ProfilePicture = actor.ProfilePicture;
+            actorVM.FullName = actor.FullName;
+            actorVM.Age = actor.Age;
+            actorVM.Biography = actor.Biography;
+
+
+            var service = serviceProvider.GetService<IActorService>();
+
             Assert.DoesNotThrowAsync(async () => await service.AddNewActorAsync(actorVM));
         }
 

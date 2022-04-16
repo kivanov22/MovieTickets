@@ -77,7 +77,6 @@ namespace MovieTickets.Web.Controllers
         //[Bind("ProfilePicture, FullName, Age, Biography")]
         public async Task<IActionResult> Create(ProducerViewModel producer)
         {
-           // producer.Movies = new List<Movie>();
             if (!ModelState.IsValid)
             {
                 return View(producer);

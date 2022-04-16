@@ -19,7 +19,6 @@ namespace MovieTickets.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            //Make it Quriable instead of Enumerable
             var data = await _service.GetAllAsync();
             var actors = new ActorViewModel();
 

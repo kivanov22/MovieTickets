@@ -87,9 +87,6 @@ namespace MovieTickets.Web.Controllers
                .ToList();
 
                 var filteredResult = movieQuery
-                // .Where(n => string.Equals(n.Title, searchString, StringComparison.CurrentCultureIgnoreCase)
-                //|| string.Equals(n.Description, searchString, StringComparison.CurrentCultureIgnoreCase))
-                //.ToList();
                 .Where(n => n.Title.Contains(searchString,StringComparison.InvariantCultureIgnoreCase)
                 || n.Description.Contains(searchString,StringComparison.InvariantCultureIgnoreCase)).ToList();
 

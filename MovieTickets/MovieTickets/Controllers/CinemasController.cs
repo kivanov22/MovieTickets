@@ -50,7 +50,6 @@ namespace MovieTickets.Web.Controllers
         //[Bind("Logo, CinemaName, City, CinemaAddress")]
         public async Task<IActionResult> Create(CinemaViewModel cinema)
         {
-            //ModelState.Remove("Movies");
             if (!ModelState.IsValid)
             {
                 return View(cinema);

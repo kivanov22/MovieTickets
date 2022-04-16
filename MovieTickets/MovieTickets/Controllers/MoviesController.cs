@@ -24,7 +24,6 @@ namespace MovieTickets.Web.Controllers
         {
             var allMovies = await _service.GetAllAsync(n => n.Cinema);
 
-            //var movie = new MovieVM();
 
             var movieQuery = allMovies
                 .AsQueryable()
@@ -56,6 +55,7 @@ namespace MovieTickets.Web.Controllers
             return View(dto);
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Filter(string searchString)
         {
             var allMovies = await _service.GetAllAsync(n => n.Cinema);
@@ -90,8 +90,8 @@ namespace MovieTickets.Web.Controllers
                 // .Where(n => string.Equals(n.Title, searchString, StringComparison.CurrentCultureIgnoreCase)
                 //|| string.Equals(n.Description, searchString, StringComparison.CurrentCultureIgnoreCase))
                 //.ToList();
-                .Where(n => n.Title.Contains(searchString)
-                || n.Description.Contains(searchString)).ToList();
+                .Where(n => n.Title.Contains(searchString,StringComparison.InvariantCultureIgnoreCase)
+                || n.Description.Contains(searchString,StringComparison.InvariantCultureIgnoreCase)).ToList();
 
                 var dto = new AllMovieViewModel
                 {

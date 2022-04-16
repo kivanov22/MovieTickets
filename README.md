@@ -57,18 +57,22 @@ MovieTickets is a ASP.NET Core MVC 6.0 web application I builded during C# ASP.N
 * Fine Code Coverage
 
 ## ✔️Tests Code Coverage Results
+* Three screenshots of the test coverage:
+
 <p align="center">
-<img src="https://github.com/kivanov22/MovieTickets/tree/main/MovieTickets/Img/higher-coverage.png" alt="Coverage" />
+<img src="https://github.com/kivanov22/MovieTickets/tree/main/MovieTickets/Img/higher-coverage.png" alt="Coverage1" />
 <br />
-<img src="https://github.com/kivanov22/MovieTickets/tree/main/MovieTickets/Img/higher-coverage2.png" alt="Coverage" />
 <br />
-<img src="https://github.com/kivanov22/MovieTickets/tree/main/MovieTickets/Img/higher-coverage3.png" alt="Coverage" />
+<img src="https://github.com/kivanov22/MovieTickets/tree/main/MovieTickets/Img/higher-coverage2.png" alt="Coverage2" />
+<br />
+<br />
+<img src="https://github.com/kivanov22/MovieTickets/tree/main/MovieTickets/Img/higher-coverage3.png" alt="Coverage3" />
 
 </p>
 
 <!-- ## 🔗 **Link to the project**
 &nbsp;&nbsp;&nbsp;&nbsp;**[........azurewebsites.net](https://..........azurewebsites.net/)** -->
 
-## 📸 Application screenshots
+<!-- ## 📸 Application screenshots
 <p align="center">
-</p>
+</p> -->

@@ -23,6 +23,7 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+//Old way for seeding which was not working very good, but still seeded
 //using (var scope = app.Services.CreateScope())
 //{
 //    var services = scope.ServiceProvider;
@@ -33,6 +34,7 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
+//New way of seeding
 //app.PrepareDatabase();
 
 if (app.Environment.IsDevelopment())

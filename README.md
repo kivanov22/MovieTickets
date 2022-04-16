@@ -7,6 +7,15 @@ Link of the Website - .....
 # Project Introduction
 MovieTickets is a ASP.NET Core MVC 6.0 web application I builded during C# ASP.NET Core course at SoftUni (March-April 2022). <br />
 
+## 🧪 Test Accounts
+&nbsp;&nbsp;&nbsp;&nbsp;Username: **admin@etickets.com**  
+&nbsp;&nbsp;&nbsp;&nbsp;Password: **Coding@1234?**  
+
+&nbsp;&nbsp;&nbsp;&nbsp;Username: **user@etickets.com**  
+&nbsp;&nbsp;&nbsp;&nbsp;Password: **Coding@1234?** 
+<br/><br/>
+
+
 # Built With
 * ASP.NET Core 5 MVC
 * Bootstrap
@@ -43,7 +52,6 @@ MovieTickets is a ASP.NET Core MVC 6.0 web application I builded during C# ASP.N
 3. MovieTickets.Services - Class Library,
 4. MovieTickets.Test - NUnit Test Project, holding Service and Controllers Tests.
 
-# Start using the project
 
 # Database Diagram
 <p align="center">

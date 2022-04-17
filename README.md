@@ -2,7 +2,10 @@
 
 ASP .NET Core MVC application designed for users to buy tickets for movies online. And also there is payment method for puchasing the tickets.
 <br />
-Link of the Website - .....
+Link of the Website - https://movieticketsweb20220416192152.azurewebsites.net/
+<br />
+Note: Problem with accessing the website after successful deployment. No errors on deployment and still doesn't show for some reason the app.
+Status of the app is runing in azure.
 
 # Project Introduction
 MovieTickets is a ASP.NET Core MVC 6.0 web application I builded during C# ASP.NET Core course at SoftUni (March-April 2022). <br />
@@ -17,7 +20,7 @@ MovieTickets is a ASP.NET Core MVC 6.0 web application I builded during C# ASP.N
 
 
 # Built With
-* ASP.NET Core 5 MVC
+* ASP.NET Core 6 MVC
 * Bootstrap
 * MSSQL Server
 * Entity Framework Core
@@ -54,6 +57,8 @@ MovieTickets is a ASP.NET Core MVC 6.0 web application I builded during C# ASP.N
 
 
 # Database Diagram
+* Screenshot of the database:
+
 <p align="center">
 <img src="https://github.com/kivanov22/MovieTickets/tree/main/MovieTickets/Img/DatabaseDiagramFull.png" alt="Diagram" />
 </p>

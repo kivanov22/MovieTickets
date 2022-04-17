@@ -2,7 +2,9 @@
 
 ASP .NET Core MVC application designed for users to buy tickets for movies online. And also there is payment method for puchasing the tickets.
 <br />
+
 Link of the Website - https://movieticketsweb20220416192152.azurewebsites.net/
+<br />
 <br />
 Note: Problem with accessing the website after successful deployment. No errors on deployment and still doesn't show for some reason the app.
 Status of the app is runing in azure.

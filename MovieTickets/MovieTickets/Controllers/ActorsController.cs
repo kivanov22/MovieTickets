@@ -54,7 +54,6 @@ namespace MovieTickets.Web.Controllers
         }
 
         [HttpPost]
-        //[Bind("FullName,ProfilePicture,Age,Biography")]
         public async Task<IActionResult> Create(ActorViewModel actor)
         {
             if (!ModelState.IsValid)
@@ -105,7 +104,6 @@ namespace MovieTickets.Web.Controllers
         }
 
         [HttpPost]
-        //[Bind("Id,FullName,ProfilePicture,Age,Biography")]
         public async Task<IActionResult> Edit(int id, ActorViewModel actor)
         {
             if (!ModelState.IsValid)

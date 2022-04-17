@@ -16,8 +16,6 @@
         public const int MovieNameMaxLength = 40;
         public const int DescriptionMinLength = 10;
         public const int DescriptionMaxLength = 255;
-        //price validation
-        //date validation
 
 
         //Cinema
@@ -92,8 +90,6 @@
         public const string CinemaAddressError = "Cinema address is required";
         public const string CinemaCityError = "City is required";
         public const string AgeError = "Age is required";
-
-
 
     }
 }

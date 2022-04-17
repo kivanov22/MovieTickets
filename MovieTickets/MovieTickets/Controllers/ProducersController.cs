@@ -74,7 +74,6 @@ namespace MovieTickets.Web.Controllers
         public IActionResult Create() => View();
 
         [HttpPost]
-        //[Bind("ProfilePicture, FullName, Age, Biography")]
         public async Task<IActionResult> Create(ProducerViewModel producer)
         {
             if (!ModelState.IsValid)
@@ -110,7 +109,6 @@ namespace MovieTickets.Web.Controllers
         }
 
         [HttpPost]
-        //[Bind("Id,ProfilePicture, FullName, Biography, Age")] 
         public async Task<IActionResult> Edit(int id,ProducerViewModel producer)
         {
             if (!ModelState.IsValid)

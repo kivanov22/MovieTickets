@@ -47,7 +47,6 @@ namespace MovieTickets.Web.Controllers
         public IActionResult Create() => View();
 
         [HttpPost]
-        //[Bind("Logo, CinemaName, City, CinemaAddress")]
         public async Task<IActionResult> Create(CinemaViewModel cinema)
         {
             if (!ModelState.IsValid)
@@ -105,7 +104,6 @@ namespace MovieTickets.Web.Controllers
         }
 
         [HttpPost]
-        //[Bind("Id,Logo, CinemaName, City, CinemaAddress")]
         public async Task<IActionResult> Edit(int id, CinemaViewModel cinema)
         {
             if (!ModelState.IsValid)

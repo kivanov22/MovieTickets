@@ -9,6 +9,5 @@ namespace MovieTickets.Services.Contracts
         Task<Actor> GetActorByIdAsync(int id);
         Task AddNewActorAsync(ActorViewModel data);
         Task UpdateActorAsync(ActorViewModel data);
-        //Task DeleteActorAsync(int id);
     }
 }
